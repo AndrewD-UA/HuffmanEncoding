@@ -43,7 +43,7 @@ public class PriorityQueue {
 		return minHeap[getParentIndex(index)];
 	}
 
-	private void resize() {
+	private void resizeCheck() {
 		if (size == capacity) {
 			HuffmanNode[] copy = new HuffmanNode[capacity * 2];
 			for (int i = 0; i < minHeap.length; i++) {
@@ -53,24 +53,55 @@ public class PriorityQueue {
 			capacity *= 2;
 		}
 	}
-
-
-	public void insert() {
-		// TODO
-	}
-
-
-	private HuffmanNode remove() {
-		return null;
-		// TODO}
-	}
-
-	private void swap() {
-		// TODO}
-	}
-
-	private void heapify() {
-		//TODO}
+	
+	/**
+	 * Inserts new node at tail end of array
+	 */
+	private void insert(HuffmanNode newNode) {
+		resizeCheck();
+		minHeap[size] = newNode;
+		size++;
+		swimUp();
 	}
 	
+	private void swimUp() {
+        int index = size - 1;
+        while (index > 0 && parent(index).compareTo(minHeap[index]) > 0) {
+            swap(index, getParentIndex(index));
+            index = getParentIndex(index);
+        }
+    }
+	
+	/**
+	 * Removes the minimum element from the min heap. Replaces with last entry
+	 */
+	private HuffmanNode popMin() {
+		HuffmanNode removed = minHeap[0];
+		minHeap[0] = minHeap[size - 1];
+		size--;
+		sinkDown();
+		return removed;
+	}
+
+	private void sinkDown() {
+        int index = 0;
+        while (hasLeftChild(index)) {
+            int smallerChildIndex = getLeftChildIndex(index);
+            if (hasRightChild(index) && rightChild(index).compareTo(leftChild(index)) < 0) {
+                smallerChildIndex = getRightChildIndex(index);
+            }
+            if (minHeap[index].compareTo(minHeap[smallerChildIndex]) <= 0) {
+                break; // Already in heap sorted order
+            }
+            swap(index, smallerChildIndex);
+            index = smallerChildIndex;
+        }
+    }
+	
+	private void swap(int index1, int index2) {
+		HuffmanNode temp = minHeap[index1];
+        minHeap[index1] = minHeap[index2];
+        minHeap[index2] = temp;
+	}
+
 }

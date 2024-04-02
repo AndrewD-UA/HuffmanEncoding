@@ -3,26 +3,26 @@
 public class HuffmanNode implements Comparable<HuffmanNode>{
 	char data;
 	int frequency;
-	HuffmanNode left;
-	HuffmanNode right;
+	HuffmanNode leftChild;
+	HuffmanNode rightChild;
 	
 	HuffmanNode(char newInput, int frequency) {
 		this.data = newInput;
 		this.frequency = frequency;
-		this.left = null;
-		this.right = null;
+		this.leftChild = null;
+		this.rightChild = null;
 	}
 	
 	int getFrequency() {
 		return frequency;
 	}
 	
-	void setLeftNode(HuffmanNode leftNode) {
-		this.left = leftNode;
+	void setLeftChild(HuffmanNode leftNode) {
+		this.leftChild = leftNode;
 	}	
 	
-	void setRightNode(HuffmanNode rightNode) {
-		this.right = rightNode;
+	void setRightCHild(HuffmanNode rightNode) {
+		this.rightChild = rightNode;
 	}
 	
 	@Override
