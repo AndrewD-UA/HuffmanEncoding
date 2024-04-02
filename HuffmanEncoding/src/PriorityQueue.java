@@ -45,7 +45,12 @@ public class PriorityQueue {
 
 	private void resize() {
 		if (size == capacity) {
-			
+			HuffmanNode[] copy = new HuffmanNode[capacity * 2];
+			for (int i = 0; i < minHeap.length; i++) {
+				copy[i] = minHeap[i];
+			}
+			minHeap = copy;
+			capacity *= 2;
 		}
 	}
 
