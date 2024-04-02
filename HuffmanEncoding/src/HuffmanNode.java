@@ -21,7 +21,7 @@ public class HuffmanNode implements Comparable<HuffmanNode>{
 		this.leftChild = leftNode;
 	}	
 	
-	void setRightCHild(HuffmanNode rightNode) {
+	void setRightChild(HuffmanNode rightNode) {
 		this.rightChild = rightNode;
 	}
 	
