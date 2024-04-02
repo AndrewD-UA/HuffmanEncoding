@@ -10,11 +10,6 @@ public class HuffmanEncoding {
 		node1.setRightNode(node3);
 		node2.setLeftNode(node4);
 		
-		System.out.println(node1.compareTo(node4)); 
-		
-		System.out.println();
 	}
 
 }
-
-
