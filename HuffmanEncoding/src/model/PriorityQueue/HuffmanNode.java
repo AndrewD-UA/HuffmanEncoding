@@ -1,12 +1,18 @@
 //HuffmanNode.java
+package model.PriorityQueue;
 
+/**
+ * A basic node for use in huffman encodiong
+ * 
+ * @author Chris Reid
+ */
 public class HuffmanNode implements Comparable<HuffmanNode>{
 	char data;
 	int frequency;
 	HuffmanNode leftChild;
 	HuffmanNode rightChild;
 	
-	HuffmanNode(char newInput, int frequency) {
+	public HuffmanNode(char newInput, int frequency) {
 		this.data = newInput;
 		this.frequency = frequency;
 		this.leftChild = null;

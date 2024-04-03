@@ -1,4 +1,8 @@
 //HuffmanEncoding.java
+package model;
+
+import model.PriorityQueue.HuffmanNode;
+
 public class HuffmanEncoding {
 	public static void main(String[] args) {
 		HuffmanNode node1 = new HuffmanNode('a', 1);

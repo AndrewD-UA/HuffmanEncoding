@@ -1,5 +1,11 @@
 //PriorityQueue.java
+package model.PriorityQueue;
 
+/**
+ * A priority queue implementation
+ * 
+ * @author Chris Reid
+ */
 public class PriorityQueue {
 	private HuffmanNode[] minHeap;
 	private int size;
