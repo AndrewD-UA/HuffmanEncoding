@@ -19,20 +19,35 @@ public class HuffmanNode implements Comparable<HuffmanNode>{
 		this.rightChild = null;
 	}
 	
-	int getFrequency() {
+	public int getFrequency() {
 		return frequency;
 	}
 	
-	void setLeftChild(HuffmanNode leftNode) {
+	public void setLeftChild(HuffmanNode leftNode) {
 		this.leftChild = leftNode;
 	}	
 	
-	void setRightChild(HuffmanNode rightNode) {
+	public void setRightChild(HuffmanNode rightNode) {
 		this.rightChild = rightNode;
 	}
 	
 	@Override
 	public int compareTo(HuffmanNode compared) {
 		return this.frequency - compared.frequency;
+	}
+
+	public HuffmanNode getLeftChild() {
+		// TODO Auto-generated method stub
+		return leftChild;
+	}
+
+	public HuffmanNode getRightChild() {
+		// TODO Auto-generated method stub
+		return rightChild;
+	}
+
+	public char getData() {
+		// TODO Auto-generated method stub
+		return data;
 	}
 }
