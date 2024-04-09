@@ -3,7 +3,9 @@ package model;
 import model.PriorityQueue.HuffmanNode;
 
 /**
- * Provides the functionality of decoding Huffman-encoded bits
+ * Provides the functionality of decoding Huffman-encoded bits.
+ * 
+ * Facilitates both integer array and String versions of a Huffman encoding.
  * 
  * @author Andrew Dennison
  */
@@ -58,9 +60,9 @@ public class Decode {
 	 * The first int is always the length of the transmissions. The remaining ints are 
 	 * the encoding as 1s and 0s.  The ending of the transmission is assumed to be zero-padded.
 	 * 
-	 * @param encoding
-	 * @param root
-	 * @return
+	 * @param encoding	The integer array representing the bits of the encoding
+	 * @param root		The root of the huffman tree
+	 * @return			The decoded String
 	 */
 	public static String decode(int[] encoding, HuffmanNode root) {
 		int length = encoding[0];
@@ -69,33 +71,31 @@ public class Decode {
 		String result = "";
 		
 		while (index < length) {
+			// How far into the Integer array we are currrently
 			int currArr = (index / Integer.SIZE) + 1;
+			// Which bit of the current Integer needs to be shifted out
 			int currPosInArr = Integer.SIZE - (index % Integer.SIZE) - 1;
 			
+			// Shift and mask out the current bit
 			int currVal = encoding[currArr] >> currPosInArr & 0x1;
-			System.out.printf("%d : %d : %d\n", currArr, currPosInArr, currVal);
 			if (currVal == 0) {
 				currNode = currNode.getLeftChild();
-				System.out.println("Going left");
 				
 				// If the left child is a leaf, add the character associated with that node to the result
 				if (currNode.isLeaf()) {
 					result += currNode.getData();
 					currNode = root;
-					System.out.printf("Added %c, resetting\n", currNode.getData());
 				}
 			}
 		
 			// Else, travel to the right child (it must be a 1)
 			else{
 				currNode = currNode.getRightChild();
-				System.out.println("going right");
 				
 				// If the right child is a leaf, add the character associated with that node to the result
 				if (currNode.isLeaf()) {
 					result += currNode.getData();
 					currNode = root;
-					System.out.printf("Added %c, resetting\n", currNode.getData());
 				}
 			} 
 			

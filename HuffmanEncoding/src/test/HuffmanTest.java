@@ -66,7 +66,16 @@ public class HuffmanTest {
 	    assertEquals(expectedEncoded, encoded);
 	}
 	
-	
+	@Test
+	public void testAbraEncoding() {
+		String input = "ABRACADABRA";
+		String expectedOutput = "01111001100011010111100";
+		
+		HuffmanNode root = Encode.buildHuffmanTree(input);
+		String encoded = Encode.encodeString(input, root);
+		assertEquals(expectedOutput, encoded);
+		assertEquals(input, Decode.decode(encoded, root));
+	}
 	
 	@Test
 	public void testEncoding3Similar() { //PASS (similar frequencies)
@@ -114,10 +123,7 @@ public class HuffmanTest {
 	    String encoded = Encode.encodeString(input, Encode.buildHuffmanTree(input));
 	    assertEquals(expectedEncoded, encoded);
 	}
-	
-	
-
-	
+		
 	@Test
 	public void testDecodingString() {
 		//assertEquals("streets are stone stars are not", Decode.decode("1110001111011000111101010011110"));
