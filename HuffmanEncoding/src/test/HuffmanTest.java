@@ -119,7 +119,7 @@ public class HuffmanTest {
 
 	
 	@Test
-	public void testDecoding() {
+	public void testDecodingString() {
 		//assertEquals("streets are stone stars are not", Decode.decode("1110001111011000111101010011110"));
 		String input = "aaaabbbccd";
 	    String expectedEncoded = "0000101010111111110";
@@ -127,6 +127,21 @@ public class HuffmanTest {
 	    HuffmanNode root = Encode.buildHuffmanTree(input);
 	    String encoded = Encode.encodeString(input, root);
 	    assertEquals(expectedEncoded, encoded);
+	    
+	    String decoded = Decode.decode(encoded, root);
+	    assertEquals(input, decoded);
+	}
+	
+	@Test
+	public void testDecodingBits() {
+		//assertEquals("streets are stone stars are not", Decode.decode("1110001111011000111101010011110"));
+		String input = "aaaabbbccd";
+	    int[] encoded = new int[] {
+	    		19,
+	    		0xABFC000
+	    };
+	    
+	    HuffmanNode root = Encode.buildHuffmanTree(input);
 	    
 	    String decoded = Decode.decode(encoded, root);
 	    assertEquals(input, decoded);
