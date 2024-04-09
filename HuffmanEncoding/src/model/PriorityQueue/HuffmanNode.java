@@ -50,4 +50,8 @@ public class HuffmanNode implements Comparable<HuffmanNode>{
 		// TODO Auto-generated method stub
 		return data;
 	}
+	
+	public boolean isLeaf() {
+		return leftChild == null && rightChild == null;
+	}
 }

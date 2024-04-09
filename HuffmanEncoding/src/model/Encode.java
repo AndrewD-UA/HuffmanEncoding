@@ -13,13 +13,7 @@ public class Encode {
 	 * @param input The input string to be encoded
 	 * @return The encoded string using Huffman codes
 	 */
-	public static String encodeString(String input) {
-		// Calculate character frequencies
-		HashTable<Character, Integer> frequencyMap = calculateFrequencies(input);
-
-		// Build Huffman tree
-		HuffmanNode root = buildHuffmanTree(frequencyMap);
-
+	public static String encodeString(String input, HuffmanNode root) {
 		// Generate Huffman codes
 		HashTable<Character, String> codes = generateHuffmanCodes(root);
 
@@ -46,7 +40,9 @@ public class Encode {
 		return frequencyMap;
 	}
 
-	private static HuffmanNode buildHuffmanTree(HashTable<Character, Integer> frequencyMap) {
+	public static HuffmanNode buildHuffmanTree(String input) {
+		HashTable<Character, Integer> frequencyMap = calculateFrequencies(input);
+		
 		PriorityQueue queue = new PriorityQueue(frequencyMap.size());
 
 		// Iterate over each key-value pair in frequency map
@@ -80,11 +76,11 @@ public class Encode {
 	private static HashTable<Character, String> generateHuffmanCodes(HuffmanNode root) {
 		HashTable<Character, String> codes = new HashTable<>();
 		StringBuilder debugTable = new StringBuilder();
-		debugTable.append("Symbol\tWeight\tHuffman Code\n");
+		//debugTable.append("Symbol\tWeight\tHuffman Code\n");
 
 		generateCodes(root, "", codes, debugTable);
 
-		System.out.println(debugTable.toString());
+		//System.out.println(debugTable.toString());
 
 		return codes;
 	}
