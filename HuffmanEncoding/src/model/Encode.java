@@ -20,10 +20,36 @@ public class Encode {
 		// Encode the input string
 		StringBuilder encodedString = new StringBuilder();
 		for (char c : input.toCharArray()) {
+			//System.out.printf("%c : %s\n", c, codes.get(c));
 			encodedString.append(codes.get(c));
 		}
 
 		return encodedString.toString();
+	}
+	
+	public static int[] encodeBits(String input, HuffmanNode root) {
+		int[] bits = new int[2];
+		
+		// Generate Huffman codes
+		HashTable<Character, String> codes = generateHuffmanCodes(root);
+
+		// The 32 bits we are currently encoding
+		int currBits = 0;
+		// The index we can next insert at
+		int index = 0;
+		for (char c : input.toCharArray()) {
+			String code = codes.get(c);
+			int codeBits = Integer.parseInt(code);
+			int numBits = code.length();
+			
+			if (numBits > Integer.SIZE - index) {
+				// Add the remaining bits, then copy array
+			}
+			
+			//System.out.printf("%c : %s\n", c, codes.get(c));
+		}
+
+		return bits;
 	}
 
 	/**
@@ -37,6 +63,7 @@ public class Encode {
 		for (char c : input.toCharArray()) {
 			frequencyMap.put(c, frequencyMap.getOrDefault(c, 0) + 1);
 		}
+		//System.out.printf("Table built: \n%s\n", frequencyMap.toString());
 		return frequencyMap;
 	}
 
@@ -46,7 +73,7 @@ public class Encode {
 		PriorityQueue queue = new PriorityQueue(frequencyMap.size());
 
 		// Iterate over each key-value pair in frequency map
-		for (Character c : frequencyMap.keySet()) {
+		for (char c : frequencyMap.keySet()) {
 			Integer frequency = frequencyMap.get(c);
 			HuffmanNode node = new HuffmanNode(c, frequency); 
 																
@@ -58,6 +85,7 @@ public class Encode {
 			HuffmanNode left = queue.popMin();
 			HuffmanNode right = queue.popMin();
 			HuffmanNode parent = new HuffmanNode('\0', left.getFrequency() + right.getFrequency());
+			//System.out.printf("New parent from %c, %c\n", left.getData(), right.getData());
 			parent.setLeftChild(left);
 			parent.setRightChild(right);
 			queue.insert(parent);
@@ -102,8 +130,7 @@ public class Encode {
 		if (node.getLeftChild() == null && node.getRightChild() == null) {
 			codes.put(node.getData(), code);
 
-			tableBuilder.append(node.getData()).append("\t").append(node.getFrequency()).append("\t").append(code)
-					.append("\n");
+			tableBuilder.append(String.format("%c\t%d\t%s\n", node.getData(), node.getFrequency(), code));
 		} else {
 			generateCodes(node.getLeftChild(), code + "0", codes, tableBuilder);
 			generateCodes(node.getRightChild(), code + "1", codes, tableBuilder);

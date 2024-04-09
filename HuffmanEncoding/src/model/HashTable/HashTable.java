@@ -84,7 +84,7 @@ public class HashTable<K, V> {
             entry.value = value;  // Update existing entry
         } else {
             // Key not found, create a new entry and add it to the bucket
-            Entry<K, V> newEntry = new Entry<>(key, value);
+            Entry<K, V> newEntry = new Entry<K, V>(key, value);
             newEntry.next = table[index];  // Insert at the beginning of the linked list
             table[index] = newEntry;
             size++;
@@ -166,6 +166,17 @@ public class HashTable<K, V> {
 	    }
 
 	    return keys;
+	}
+	
+	@Override
+	public String toString() {
+		String result = "";
+		
+		for (char key : keySet()) {
+			result += String.format("%c : %d\n", key, get(key));
+		}
+		
+		return result;
 	}
 
 }

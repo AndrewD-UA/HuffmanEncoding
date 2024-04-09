@@ -83,6 +83,10 @@ public class PriorityQueue {
      * @return The minimum element in the priority queue
      */
     public HuffmanNode popMin() {
+    	if(size == 0) {
+    		return null;
+    	}
+    	
         HuffmanNode removed = minHeap[0];
         minHeap[0] = minHeap[size - 1];
         size--;
