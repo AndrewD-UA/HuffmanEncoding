@@ -93,7 +93,11 @@ public class PriorityQueue {
         sinkDown();
         return removed;
     }
-
+    
+    /**
+     * Sink a node from its current position to the position where heap order
+     * is maintained.
+     */
     private void sinkDown() {
         int index = 0;
         while (hasLeftChild(index)) {
@@ -109,12 +113,21 @@ public class PriorityQueue {
         }
     }
 
+    /**
+     * Swap two huffman nodes in an array
+     * @param index1	The index of the first node to swap
+     * @param index2	The index of the second node to swap
+     */
     private void swap(int index1, int index2) {
         HuffmanNode temp = minHeap[index1];
         minHeap[index1] = minHeap[index2];
         minHeap[index2] = temp;
     }
-
+    
+    /**
+     * The size of the queue.
+     * @return	The logical size of the queue, e.g. the number of valid nodes in the heap.
+     */
     public int size() {
         return size;
     }

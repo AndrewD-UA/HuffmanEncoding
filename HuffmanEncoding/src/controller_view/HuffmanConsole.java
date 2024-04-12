@@ -6,6 +6,12 @@ import model.Decode;
 import model.Encode;
 import model.PriorityQueue.HuffmanNode;
 
+/**
+ * A simple console manager which provides an interface to
+ * encode/decode from the command line.
+ * 
+ * @author Andrew Dennison
+ */
 public class HuffmanConsole {
 
 	public static void main(String args[]) {
