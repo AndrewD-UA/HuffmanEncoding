@@ -4,13 +4,13 @@ package model.HashTable;
  * A custom HashTable class to store key-value pairs using linked lists for collision resolution.
  * Supports generic types for keys (K) and values (V).
  * 
- * @author Andrew Dennison and Adam Fehse
+ * @author Adam Fehse
  */
 public class HashTable<K, V> {
     private static final int DEFAULT_CAPACITY = 17;  // Default capacity of the hash table
     private Entry<K, V>[] table;  // Array of Entry's (buckets)
     private int size;  // Number of key-value pairs stored in the hash table
-
+    
     /**
      * Inner class: representing a key-value pair (entry) in the hash table.
      */

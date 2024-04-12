@@ -36,7 +36,6 @@ public class HuffmanTest {
 	@Test
 	public void testEncoding12() { 
 	    String input = "dabacabapoyojoypp";
-	    String expectedEncoded = "";
 	    System.out.print("input: "+input + "\n");
 	    HuffmanNode root = Encode.buildHuffmanTree(input);
 	    String encoded = Encode.encodeString(input, root);
@@ -189,6 +188,15 @@ public class HuffmanTest {
 	}
 	
 	@Test
+	public void testBitOnlyOperations() {
+		String input = "testString";
+		HuffmanNode root = Encode.buildHuffmanTree(input);
+		int[] encode = Encode.encodeBits(input, root);
+		String decode = Decode.decode(encode, root);
+		assertEquals(input, decode);
+	}
+	
+	@Test
 	public void testNodeFunctionality() {
 	    // Test node creation
 	    HuffmanNode nodeA = new HuffmanNode('a', 3);
@@ -207,16 +215,4 @@ public class HuffmanTest {
 	    assertEquals(leftChild, parentNode.getLeftChild());
 	    assertEquals(rightChild, parentNode.getRightChild());
 	}
-	
-	public static void printTree(HuffmanNode root) {
-		if (root == null) {
-			return;
-		}
-		
-		System.out.printf("%s\nLeft:", root.getData());
-		printTree(root.getLeftChild());
-		System.out.println("Right:");
-		printTree(root.getRightChild());
-	}
-
 }
