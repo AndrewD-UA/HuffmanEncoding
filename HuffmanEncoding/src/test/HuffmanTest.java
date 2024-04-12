@@ -1,5 +1,6 @@
 package test;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -209,6 +210,23 @@ public class HuffmanTest {
 		
 		assertEquals(sb.toString(), Decode.decode(encodeBits, root));
 		assertEquals(sb.toString(), Decode.decode(encodeString, root));
+	}
+	
+	@Test
+	public void testNoTree() {
+		HuffmanNode root = new HuffmanNode('a', 0);
+		String encodeString = Encode.encodeString("hello", root);
+		
+		String decodeString = Decode.decode(encodeString, root);
+		assertEquals("Please create a tree before trying to decode!", decodeString);
+		
+		root = null;
+		encodeString = Encode.encodeString("hello", root);
+		int[] encodeBits = Encode.encodeBits("hello", root);
+		
+		// If you give a null tree, you get an error message or an empty array
+		assertEquals(Encode.ERROR_MESSAGE, encodeString);
+		assertArrayEquals(new int[] {0, 0}, encodeBits);
 	}
 	
 	@Test

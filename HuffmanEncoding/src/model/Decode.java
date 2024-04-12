@@ -42,6 +42,11 @@ public class Decode {
 			else{
 				currNode = currNode.getRightChild();
 				
+				// If an invalid tree was submitted
+				if (currNode == null) {
+					return "Please create a tree before trying to decode!";
+				}
+				
 				// If the right child is a leaf, add the character associated with that node to the result
 				if (currNode.isLeaf()) {
 					result += currNode.getData();

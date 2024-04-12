@@ -11,7 +11,9 @@ import model.HashTable.*;
  * @author Adam Fehse and Andrew Dennison
  */
 public class Encode {
-
+	
+	public static final String ERROR_MESSAGE = "";
+	
 	/**
 	 * Encode a given input string using Huffman encoding.
 	 * 
@@ -19,6 +21,10 @@ public class Encode {
 	 * @return The encoded string using Huffman codes
 	 */
 	public static String encodeString(String input, HuffmanNode root) {
+		if (root == null) {
+			return ERROR_MESSAGE;
+		}
+		
 		// Generate Huffman codes
 		HashTable<Character, String> codes = generateHuffmanCodes(root);
 
@@ -35,11 +41,15 @@ public class Encode {
 	/**
 	 * Given a string and a HuffmanNode tree, produce an array of bits
 	 * representing its Huffman encoding.
-	 * @param input
-	 * @param root
-	 * @return
+	 * @param input	The string to convert to bits
+	 * @param root	The HuffmanTree encoding
+	 * @return		An integer array of {numChars, bits, bits, bits...}
 	 */
 	public static int[] encodeBits(String input, HuffmanNode root) {
+		if (root == null) {
+			return new int[] {0, 0};
+		}
+		
 		int[] bits = new int[2];
 		// The number of characters encoded
 		int length = 0;
