@@ -2,7 +2,6 @@ package test;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 import java.util.Random;
 
@@ -218,7 +217,9 @@ public class HuffmanTest {
 		String encodeString = Encode.encodeString("hello", root);
 		
 		String decodeString = Decode.decode(encodeString, root);
-		assertEquals("Please create a tree before trying to decode!", decodeString);
+		String decodeBits = Decode.decode(new int[] {0, 0x12345678}, root);
+		assertEquals("", decodeBits);
+		assertEquals(Decode.ERROR_MESSAGE, decodeString);
 		
 		root = null;
 		encodeString = Encode.encodeString("hello", root);
@@ -236,7 +237,7 @@ public class HuffmanTest {
 	    HuffmanNode nodeB = new HuffmanNode('b', 2);
 	    
 	    // Test compareTo method
-	    assertTrue(nodeA.compareTo(nodeB) > 0); // 'a' has higher frequency than 'b'
+	    assertEquals(true, nodeA.compareTo(nodeB) > 0); // 'a' has higher frequency than 'b'
 	    
 	    // Test setting and getting child nodes
 	    HuffmanNode leftChild = new HuffmanNode('c', 1);

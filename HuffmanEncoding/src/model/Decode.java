@@ -11,6 +11,11 @@ import model.PriorityQueue.HuffmanNode;
  */
 public class Decode {
 	
+	/**
+	 * The message to display if input is given with a null or invalid tree
+	 */
+	public static final String ERROR_MESSAGE = "Please create a tree before trying to decode!";
+	
 	/**Given the root of a Huffman tree and the encoding, decode it to English characters.
 	 * 
 	 * @param encoding	String representation of 0s and 1s for the encoded data
@@ -44,7 +49,7 @@ public class Decode {
 				
 				// If an invalid tree was submitted
 				if (currNode == null) {
-					return "Please create a tree before trying to decode!";
+					return ERROR_MESSAGE;
 				}
 				
 				// If the right child is a leaf, add the character associated with that node to the result
