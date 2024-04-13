@@ -65,7 +65,7 @@ The decoding algorithm is provided the same tree used to construct the nodes, as
 
 **PriorityQueue**
 - A PriorityQueue is maintained, which acts a min heap.
-- It is self-organizing and self-resizing, so the only requirement is to create HuffmanNOdes outside of the table before passing them in
+- It is self-organizing and self-resizing, so the only requirement is to create HuffmanNodes outside of the table before passing them in
 - The PriorityQueue will always keep the HuffmanNode with the lowest frequency available at the "root", or index 0, of the queue.
 
 **LIMITATIONS**
