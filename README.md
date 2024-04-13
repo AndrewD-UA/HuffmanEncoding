@@ -56,6 +56,7 @@ The decoding algorithm is provided the same tree used to construct the nodes, as
 
 **HashTable<K, V>**
 - A generic Hashtable is available, which is used as both a <Character, Integer> table and <Character, String> table.
+- The generic Hashtable resolves collisions via separate chaining.
 - The <Character, Integer> table stores frequencies of characters as read in the input string, e.g. in "Hello" the frequency of the character 'l' is 2 and all other characters are frequency 1.
 - The <Character, String> table stores the String encoding of each Character in a table.
   - Assume two characters 'a' and 'b' are encoded, both with frequency 1. Thus, the tree consists of a '\0' root node which has left child 'a' and right child 'b'.
