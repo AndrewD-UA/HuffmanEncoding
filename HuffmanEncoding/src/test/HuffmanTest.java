@@ -170,7 +170,7 @@ public class HuffmanTest {
 	}
 	
 	@Test
-	public void testDecodingBits() {
+	public void testDecodingBits() {	// Test manually encoded bits
 		String input = "aaaabbbccd";
 	    int[] encoded = new int[] {
 	    		19,
@@ -184,7 +184,7 @@ public class HuffmanTest {
 	}
 	
 	@Test
-	public void testBitOnlyOperations() {
+	public void testBitOnlyOperations() { // Encode to bits, decode from bits
 		String input = "testString";
 		HuffmanNode root = Encode.buildHuffmanTree(input);
 		int[] encode = Encode.encodeBits(input, root);
@@ -197,22 +197,35 @@ public class HuffmanTest {
 		StringBuilder sb = new StringBuilder();
 		Random r = new Random(System.currentTimeMillis());
 		
-		for(int i = 0; i < 10000; i++) {
+		for(int i = 0; i < 10000; i++) { // Create a String of 10000 random chars
 			sb.append((char) r.nextInt(50, 100));
 		}
 		
 		HuffmanNode root = Encode.buildHuffmanTree(sb.toString());
 		String encodeString = Encode.encodeString(sb.toString(), root);
 		int[] encodeBits = Encode.encodeBits(sb.toString(), root);
-		
-		System.out.println(sb.toString());
-		
+				
 		assertEquals(sb.toString(), Decode.decode(encodeBits, root));
 		assertEquals(sb.toString(), Decode.decode(encodeString, root));
 	}
 	
 	@Test
-	public void testNoTree() {
+	public void testNullChars() { // Null chars are invalid as they are used for internal nodes
+		String input = "\0";
+		
+		HuffmanNode root = Encode.buildHuffmanTree(input);
+		String encodeString = Encode.encodeString(input, root);
+		int[] encodedBits = Encode.encodeBits(input, root);
+		
+		String decodedString = Decode.decode(encodeString, root);
+		String decodedBits = Decode.decode(encodedBits, root);
+		
+		assertEquals(false, input.equals(decodedString));
+		assertEquals(false, input.equals(decodedBits));
+	}
+	
+	@Test
+	public void testNoTree() {	// Test various scenarios resulting from bad function calls
 		HuffmanNode root = new HuffmanNode('a', 0);
 		String encodeString = Encode.encodeString("hello", root);
 		

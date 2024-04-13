@@ -31,7 +31,6 @@ public class Encode {
 		// Encode the input string
 		StringBuilder encodedString = new StringBuilder();
 		for (char c : input.toCharArray()) {
-			//System.out.printf("%c : %s\n", c, codes.get(c));
 			encodedString.append(codes.get(c));
 		}
 
@@ -129,7 +128,6 @@ public class Encode {
 		for (char c : input.toCharArray()) {
 			frequencyMap.put(c, frequencyMap.getOrDefault(c, 0) + 1);
 		}
-		//System.out.printf("Table built: \n%s\n", frequencyMap.toString());
 		return frequencyMap;
 	}
 
@@ -158,7 +156,7 @@ public class Encode {
 			HuffmanNode left = queue.popMin();
 			HuffmanNode right = queue.popMin();
 			HuffmanNode parent = new HuffmanNode('\0', left.getFrequency() + right.getFrequency());
-			//System.out.printf("New parent from %c, %c\n", left.getData(), right.getData());
+
 			parent.setLeftChild(left);
 			parent.setRightChild(right);
 			queue.insert(parent);
