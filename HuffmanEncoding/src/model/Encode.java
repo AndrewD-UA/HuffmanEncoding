@@ -49,6 +49,7 @@ public class Encode {
 		if (root == null) {
 			return new int[] { 0, 0 };
 		}
+		// 1101 000...0
 
 		int[] bits = new int[2];
 		// The number of characters encoded
@@ -56,7 +57,7 @@ public class Encode {
 
 		// Generate Huffman codes
 		HashTable<Character, String> codes = generateHuffmanCodes(root);
-
+		
 		// The 32 bits we are currently encoding.
 		int currBits = 0;
 		// The index we can next insert at.

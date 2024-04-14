@@ -2,6 +2,8 @@
 
 **Contributors: Andrew Dennison, Chris Reid, and Adam Fehse**
 
+NOTE: JUNIT 5 IS REQUIRED TO BE ADDED TO THE CLASSPATH TO RUN THE TEST CASES
+
 **Huffman Encoding Overview:**
 
 To use the code within this repository, you may either convert via console or call the methods directly.  The class HuffmanConsole will provide a text interface for testing encoding and decoding.

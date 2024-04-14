@@ -3,7 +3,6 @@ package test;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
-import java.util.Arrays;
 import java.util.Random;
 
 import org.junit.Test;
@@ -246,7 +245,7 @@ public class HuffmanTest {
 
 		HuffmanNode root = Encode.buildHuffmanTree(input);
 		int[] encodeBits = Encode.encodeBits(input, root);
-		System.out.println(Arrays.toString(encodeBits));
+		//System.out.println(Arrays.toString(encodeBits));
 		String decodeBits = Decode.decode(encodeBits, root);
 
 		assertEquals(input, decodeBits);
